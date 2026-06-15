@@ -1,102 +1,281 @@
 # 🤖 Customer Support AI Pipeline
 
-A 3-in-1 AI pipeline that processes customer messages using the **Cohere API**
-and produces — in a single API call per message:
+<div align="center">
 
-| Output | Options |
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Cohere](https://img.shields.io/badge/Cohere-API-39594C?style=for-the-badge&logo=cohere&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+**An AI-powered customer message processing pipeline that classifies messages, detects sentiment, and generates professional auto-replies — all in a single API call.**
+
+[Features](#-features) • [Demo](#-demo) • [Project Structure](#-project-structure) • [Setup](#-setup) • [Usage](#-usage) • [Output](#-output)
+
+</div>
+
+---
+
+## 📌 Overview
+
+Customer Support AI Pipeline is a lightweight NLP system built for automating the first layer of customer support. Given any incoming customer message, the system produces three structured outputs simultaneously using the **Cohere LLM API**:
+
+| Output | Description |
 |---|---|
-| **Category** | Complaint · Refund/Return · Sales Inquiry · Delivery Question · Account/Technical Issue · General Query · Spam |
-| **Sentiment** | Positive · Neutral · Negative |
-| **Auto-Reply** | Short, professional, context-aware response |
+| **Category** | Classifies the message into one of 7 predefined support categories |
+| **Sentiment** | Detects the emotional tone of the message |
+| **Auto-Reply** | Generates a short, professional response tailored to the message |
+
+All three outputs are produced in a **single API call per message**, making the pipeline fast and token-efficient.
+
+---
+
+## ✨ Features
+
+- ⚡ **Single API call** per message returns all three outputs as structured JSON
+- 🎯 **7 classification categories** covering the full range of customer support scenarios
+- 💬 **Context-aware auto-replies** that match the tone and urgency of each message
+- 🎨 **Styled Jupyter output** with color-coded category and sentiment badges
+- 📊 **CSV export** of all processed results for reporting and analysis
+- 🛡️ **Robust error handling** with safe fallback values if parsing fails
+- 🆓 **Fully free** — runs on Cohere's free trial API tier
+
+---
+
+## 🗂 Classification Categories
+
+```
+Complaint  •  Refund/Return  •  Sales Inquiry  •  Delivery Question
+Account/Technical Issue  •  General Query  •  Spam
+```
+
+## 💭 Sentiment Labels
+
+```
+Positive  •  Neutral  •  Negative
+```
+
+---
+
+## 🎥 Demo
+
+The pipeline processes each message and renders a styled card in the Jupyter notebook:
+
+```
+Input Message:
+"I ordered a laptop two weeks ago and it still hasn't arrived! This is absolutely unacceptable."
+
+Output:
+┌─────────────────────────────────────────────────────┐
+│  CATEGORY     Complaint                             │
+│  SENTIMENT    ❌ Negative                           │
+│  AUTO-REPLY   We sincerely apologize for the delay  │
+│               in your order. Our team is urgently   │
+│               looking into this and will update you  │
+│               within 24 hours.                      │
+└─────────────────────────────────────────────────────┘
+```
 
 ---
 
 ## 📁 Project Structure
 
 ```
-customer_support_ai/
-├── config.py               ← 🔑 PUT YOUR API KEY HERE
-├── processor.py            ← Core pipeline (Cohere API calls + JSON parsing)
-├── demo_messages.py        ← 7 sample messages covering all categories
-├── display_utils.py        ← Styled HTML cards for Jupyter rendering
-├── generate_notebook.py    ← Script that produced the .ipynb (already run)
-├── requirements.txt        ← Python dependencies
-├── Customer_Support_AI.ipynb  ← Main notebook — open and run this
-└── README.md
+customer-support-ai-pipeline/
+│
+├── 📓 Customer_Support_AI.ipynb   # Main notebook — run this
+│
+├── 🐍 config.py                   # API key, model name, category & sentiment labels
+├── 🐍 processor.py                # Core pipeline: prompt builder, Cohere API call, JSON parser
+├── 🐍 demo_messages.py            # 7 sample messages covering all categories
+├── 🐍 display_utils.py            # Styled HTML card renderer for Jupyter output
+├── 🐍 generate_notebook.py        # Script used to generate the .ipynb (already run)
+│
+├── 📄 requirements.txt            # Python dependencies
+└── 📄 README.md                   # Project documentation
 ```
 
 ---
 
-## ⚡ Quick Start
-
-### 1. Get a free Cohere API key
-Sign up at https://dashboard.cohere.com/api-keys (no credit card needed).
-
-### 2. Set your API key
-Open `config.py` and replace the placeholder:
-```python
-COHERE_API_KEY = "your-actual-key-here"
-```
-
-### 3. Open the notebook
-```bash
-jupyter notebook Customer_Support_AI.ipynb
-```
-
-### 4. Run all cells top to bottom (`Kernel → Restart & Run All`)
-
-That's it — results appear as styled cards directly in the notebook.
-
----
-
-## 🔧 How it works
+## ⚙️ How It Works
 
 ```
 Customer Message
       │
       ▼
-  config.py        ← categories, sentiments, model name
+┌─────────────────────────────────────────┐
+│           processor.py                  │
+│                                         │
+│  1. Build structured prompt             │
+│     (category list + sentiment list)    │
+│                                         │
+│  2. Call Cohere Chat API                │
+│     model: command-a-03-2025            │
+│                                         │
+│  3. Parse JSON response                 │
+│     { category, sentiment, auto_reply } │
+└─────────────────────────────────────────┘
       │
       ▼
- processor.py      ← builds structured prompt → calls Cohere chat API
-                      → parses JSON response
+┌─────────────────────────────────────────┐
+│          display_utils.py               │
+│  Render styled HTML card in Jupyter     │
+└─────────────────────────────────────────┘
       │
       ▼
- display_utils.py  ← renders HTML cards in Jupyter
-      │
-      ▼
- Three outputs: Category · Sentiment · Auto-Reply
+  CSV Export  →  customer_support_results.csv
 ```
 
-**One API call per message** returns all three outputs as a JSON object:
-```json
-{
-  "category":   "Delivery Question",
-  "sentiment":  "Negative",
-  "auto_reply": "We sincerely apologize for the delay …"
-}
+The prompt instructs the model to return a **strict JSON object** with exactly three keys. A regex-based parser handles edge cases where the model wraps output in markdown fences.
+
+---
+
+## 🚀 Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/customer-support-ai-pipeline.git
+cd customer-support-ai-pipeline
 ```
+
+### 2. Install Dependencies
+
+```bash
+pip install cohere>=5.0.0
+```
+
+### 3. Get a Free Cohere API Key
+
+Sign up at [dashboard.cohere.com/api-keys](https://dashboard.cohere.com/api-keys) — no credit card required.
+
+### 4. Set Your API Key
+
+Open `config.py` and replace the placeholder:
+
+```python
+COHERE_API_KEY = "your-actual-api-key-here"
+```
+
+### 5. Launch the Notebook
+
+```bash
+jupyter notebook Customer_Support_AI.ipynb
+```
+
+Then run **Kernel → Restart & Run All**.
+
+---
+
+## 📖 Usage
+
+### Process a Single Message
+
+```python
+from processor import CustomerMessageProcessor
+
+processor = CustomerMessageProcessor()
+
+result = processor.process("I still haven't received my refund after 10 days!")
+
+print(result["category"])    # Refund/Return
+print(result["sentiment"])   # Negative
+print(result["auto_reply"])  # We apologize for the delay in processing...
+```
+
+### Process Multiple Messages in Batch
+
+```python
+messages = [
+    "Where is my order? It's been 2 weeks!",
+    "Do you offer student discounts?",
+    "Thank you, the product is amazing!",
+]
+
+results = processor.process_batch(messages)
+
+for r in results:
+    print(r["category"], "|", r["sentiment"])
+```
+
+### Export Results to CSV
+
+```python
+import csv
+
+with open("results.csv", "w", newline="", encoding="utf-8") as f:
+    writer = csv.DictWriter(f, fieldnames=["id", "original_message", "category", "sentiment", "auto_reply"])
+    writer.writeheader()
+    for i, r in enumerate(results, 1):
+        writer.writerow({"id": i, **{k: r[k] for k in ["original_message", "category", "sentiment", "auto_reply"]}})
+```
+
+---
+
+## 📊 Output
+
+### Notebook Cards
+
+Each message renders as a color-coded card with:
+- 🏷️ **Category badge** — unique color per category
+- 💭 **Sentiment badge** — green / yellow / red
+- 💬 **Auto-reply box** — blue-accented professional response
+
+### CSV Export
+
+| id | original_message | category | sentiment | auto_reply | status |
+|---|---|---|---|---|---|
+| 1 | I ordered a laptop... | Complaint | Negative | We sincerely apologize... | success |
+| 2 | I'd like to return... | Refund/Return | Neutral | Thank you for reaching... | success |
+| 3 | Do you have discounts... | Sales Inquiry | Positive | We'd love to help you... | success |
+
+---
+
+## 🧰 Tech Stack
+
+| Tool | Purpose |
+|---|---|
+| **Python 3.8+** | Core language |
+| **Cohere API** (`command-a-03-2025`) | LLM for classification, sentiment & reply generation |
+| **Jupyter Notebook** | Interactive execution environment |
+| **IPython Display** | HTML card rendering inside notebook |
+| **CSV module** | Results export |
 
 ---
 
 ## 📦 Dependencies
 
-```
-cohere >= 5.0.0   (Cohere Python SDK — free tier supports command-r-plus)
-jupyter           (notebook environment)
+```txt
+cohere>=5.0.0
 ```
 
-Install with:
-```bash
-pip install cohere>=5.0.0
-```
+No heavy ML frameworks required. The entire pipeline runs on a single lightweight API dependency.
 
 ---
 
-## 🗒️ Notes
+## 🔮 Future Improvements
 
-- The free Cohere tier has a rate limit (~20 API calls/minute). A small `time.sleep(0.3)` 
-  is included in the batch processing cell to stay well within limits.
-- If the model returns malformed JSON, the processor falls back to safe defaults 
-  and reports the error in the `status` field.
-- All 7 categories and 3 sentiments are covered by the 7 demo messages.
+- [ ] Streamlit web interface for non-technical users
+- [ ] Support for multilingual customer messages
+- [ ] Confidence scores for category predictions
+- [ ] Integration with email/helpdesk platforms (Zendesk, Freshdesk)
+- [ ] Fine-tuned model on domain-specific support data
+- [ ] Real-time processing via webhook
+
+---
+
+## 👤 Author
+
+**Ali** — BS Data Science, FAST NUCES Lahore
+- GitHub: [@whozahm3d](https://github.com/whozahm3d)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ using Cohere API · Python · Jupyter</sub>
+</div>
