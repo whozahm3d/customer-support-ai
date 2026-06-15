@@ -9,7 +9,7 @@
 
 **An AI-powered customer message processing pipeline that classifies messages, detects sentiment, and generates professional auto-replies — all in a single API call.**
 
-[Features](#-features) • [Demo](#-demo) • [Project Structure](#-project-structure) • [Setup](#-setup) • [Usage](#-usage) • [Output](#-output)
+[Features](#-features) • [Demo](#-demo) • [Project Structure](#-project-structure) • [Setup](#-setup) • [Usage](#-usage) • [Output](#-output) • [Contributing](#-contributing)
 
 </div>
 
@@ -17,7 +17,7 @@
 
 ## 📌 Overview
 
-Customer Support AI Pipeline is a lightweight NLP system built for automating the first layer of customer support. Given any incoming customer message, the system produces three structured outputs simultaneously using the **Cohere LLM API**:
+Customer Support AI Pipeline is a lightweight NLP system built for automating the first layer of customer support. Given any incoming customer message, the system produces three structured outputs:
 
 | Output | Description |
 |---|---|
@@ -91,7 +91,9 @@ customer-support-ai-pipeline/
 ├── 🐍 generate_notebook.py        # Script used to generate the .ipynb (already run)
 │
 ├── 📄 requirements.txt            # Python dependencies
-└── 📄 README.md                   # Project documentation
+├── 📄 README.md                   # Project documentation
+├── 📄 CONTRIBUTORS.md             # Contributor guidelines
+└── 📄 LICENSE                     # MIT License
 ```
 
 ---
@@ -134,8 +136,8 @@ The prompt instructs the model to return a **strict JSON object** with exactly t
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/customer-support-ai-pipeline.git
-cd customer-support-ai-pipeline
+git clone https://github.com/whozahm3d/customer-support-ai.git
+cd customer-support-ai
 ```
 
 ### 2. Install Dependencies
@@ -260,6 +262,42 @@ No heavy ML frameworks required. The entire pipeline runs on a single lightweigh
 - [ ] Integration with email/helpdesk platforms (Zendesk, Freshdesk)
 - [ ] Fine-tuned model on domain-specific support data
 - [ ] Real-time processing via webhook
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help is valued.
+
+### Quick Start for Contributors
+
+1. **Fork** the repository
+2. **Clone** your fork: `git clone https://github.com/YOUR-USERNAME/customer-support-ai.git`
+3. **Create a branch**: `git checkout -b feature/your-feature-name`
+4. **Make your changes** and test thoroughly
+5. **Commit** with clear messages: `git commit -m "feat: Add your feature"`
+6. **Push** to your fork: `git push origin feature/your-feature-name`
+7. **Open a Pull Request** with a description of your changes
+
+For detailed guidelines, please see [CONTRIBUTORS.md](CONTRIBUTORS.md).
+
+### 🎯 Areas for Contribution
+
+- 🐛 **Bug fixes** — Found an issue? Help fix it!
+- ✨ **Features** — Have a great idea? Implement it!
+- 📚 **Documentation** — Improve README or add examples
+- 🧪 **Tests** — Add test cases
+- ⚡ **Optimization** — Improve performance
+- 🎨 **UI/UX** — Enhance styling and display
+
+---
+
+## 🙌 Acknowledgments
+
+This project was developed with invaluable support from:
+
+- **Claude AI** (Anthropic) — Code generation, architecture design, documentation, testing & debugging
+- **Cohere** — Powerful language model API and free tier access
 
 ---
 
