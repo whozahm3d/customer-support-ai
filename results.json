@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "original_message": "I ordered a laptop from your website two weeks ago and it still hasn't arrived! The tracking page hasn't updated in 5 days and no one from support has responded to my emails. This is absolutely unacceptable — I need answers NOW!",
+    "category": "Delivery Question",
+    "sentiment": "Negative",
+    "auto_reply": "We sincerely apologize for the inconvenience and frustration you're experiencing with your order. We understand the urgency and will prioritize investigating the status of your shipment. A member of our support team will reach out to you shortly with an update.",
+    "status": "success"
+  },
+  {
+    "id": 2,
+    "original_message": "Hi, I'd like to return a jacket I purchased last week. Unfortunately it doesn't fit correctly and the colour looks different from the photos online. Could you please guide me through the return process and confirm I'll receive a full refund?",
+    "category": "Refund/Return",
+    "sentiment": "Neutral",
+    "auto_reply": "We're sorry to hear the jacket didn't meet your expectations. Please visit our Returns page for detailed instructions on how to process your return. Once we receive the item in its original condition, we will issue a full refund to your original payment method.",
+    "status": "success"
+  },
+  {
+    "id": 3,
+    "original_message": "Hello! I'm interested in your premium annual subscription. Do you offer any student discounts or bundle deals? Also, can I try it free before committing to a paid plan?",
+    "category": "Sales Inquiry",
+    "sentiment": "Neutral",
+    "auto_reply": "Thank you for your interest in our premium annual subscription! We do offer student discounts and occasionally have bundle deals available. Additionally, we provide a free trial period for you to explore our services before committing to a paid plan. Please check our website or contact our sales team for more details.",
+    "status": "success"
+  },
+  {
+    "id": 4,
+    "original_message": "My tracking number shows my order is still 'In Transit' after 6 days. The estimated delivery was last Tuesday. Can you check what's going on and give me an updated delivery estimate?",
+    "category": "Delivery Question",
+    "sentiment": "Neutral",
+    "auto_reply": "Thank you for reaching out. We apologize for the delay in your delivery. We will investigate the status of your order and provide an updated delivery estimate as soon as possible.",
+    "status": "success"
+  },
+  {
+    "id": 5,
+    "original_message": "I'm completely locked out of my account. I tried resetting my password three times but the reset email never arrives — not even in spam. I have an important meeting tomorrow and urgently need access to my files.",
+    "category": "Account/Technical Issue",
+    "sentiment": "Negative",
+    "auto_reply": "We're sorry to hear you're experiencing difficulty accessing your account. Our team is here to help and will prioritize resolving this issue for you. Please check your inbox for a direct message from our support team to assist you further.",
+    "status": "success"
+  },
+  {
+    "id": 6,
+    "original_message": "Just wanted to drop a note to say how impressed I am with your service! The product arrived two days early, packaging was perfect, and the quality exceeded my expectations. I'll definitely be recommending you to friends!",
+    "category": "General Query",
+    "sentiment": "Positive",
+    "auto_reply": "Thank you so much for your kind words and for sharing your positive experience with us! We're thrilled to hear that your product arrived early and met your expectations. Your recommendation means a lot, and we look forward to serving you and your friends in the future!",
+    "status": "success"
+  },
+  {
+    "id": 7,
+    "original_message": "CONGRATULATIONS!!! You have WON a FREE iPhone 15!!! CLICK HERE NOW >>> www.claimprize.xyz <<< LIMITED TIME ONLY!!! ACT FAST!!! 🎁🎁🎁",
+    "category": "Spam",
+    "sentiment": "Neutral",
+    "auto_reply": "Thank you for reaching out. We appreciate your message, but please be cautious of unsolicited offers. For your safety, we recommend not clicking on unknown links.",
+    "status": "success"
+  }
+]
